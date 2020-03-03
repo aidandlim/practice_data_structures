@@ -1,4 +1,4 @@
-# [PRACTICE - Data Structures & Algorithms] Cheat Sheet
+# [PRACTICE - Data Structures] Cheat Sheet
 
 ***Not Yet***
 
