@@ -1,10 +1,8 @@
 package com.aidandlim.practice_data_structures;
 
-import java.util.Arrays;
-
 public class Array {
     private int[] array;
-    private int count;
+    private int size;
 
     // constructor
     public Array(int length) {
@@ -20,15 +18,15 @@ public class Array {
     // insert value into specific index of array
     // time complexity: O(n)
     public void insertAt(int value, int index) {
-        if (index >= count) throw new IllegalArgumentException();
+        if (index >= size) throw new IllegalArgumentException();
 
         if (isFull()) resize();
 
-        for (int i = count; i > index; i--)
+        for (int i = size; i > index; i--)
             array[i] = array[i - 1];
 
         array[index] = value;
-        count++;
+        size++;
     }
 
     // insert value into last element of array
@@ -36,13 +34,13 @@ public class Array {
     public void insertLast(int value) {
         if (isFull()) resize();
 
-        array[count++] = value;
+        array[size++] = value;
     }
 
     // look up value by index of array
     // time complexity: O(n)
     public int findIndexByValue(int value) {
-        for (int i = 0; i < count; i++)
+        for (int i = 0; i < size; i++)
             if (array[i] == value)
                 return i;
 
@@ -52,7 +50,7 @@ public class Array {
     // look up index by value of element
     // time complexity: O(1)
     public int findValueByIndex(int index) {
-        if (index >= count) throw new IllegalArgumentException();
+        if (index >= size) throw new IllegalArgumentException();
 
         return array[index];
     }
@@ -64,13 +62,13 @@ public class Array {
     // remove value by index of array
     // time complexity: O(n)
     public void removeAt(int index) {
-        if (index >= count) throw new IllegalArgumentException();
+        if (index >= size) throw new IllegalArgumentException();
 
-        for (int i = index; i < count; i++)
+        for (int i = index; i < size; i++)
             array[i] = array[i + 1];
 
-        array[count] = 0;
-        count--;
+        array[size] = 0;
+        size--;
     }
 
     // remove value of last element
@@ -78,15 +76,15 @@ public class Array {
     public void removeLast() {
         if (isEmpty()) return;
 
-        array[count-- - 1] = 0;
+        array[size-- - 1] = 0;
     }
 
     // reverse whole array
     // time complexity: O(n / 2)
     public void reverse() {
-        for (int i = 0; i < count / 2; i++) {
-            int temp = array[count - 1 - i];
-            array[count - 1 - i] = array[i];
+        for (int i = 0; i < size / 2; i++) {
+            int temp = array[size - 1 - i];
+            array[size - 1 - i] = array[i];
             array[i] = temp;
         }
     }
@@ -96,7 +94,7 @@ public class Array {
     public int max() {
         int max = 0;
 
-        for (int i = 0; i < count; i++)
+        for (int i = 0; i < size; i++)
             if (array[i] > max)
                 max = array[i];
 
@@ -108,7 +106,7 @@ public class Array {
     public int min() {
         int min = 0;
 
-        for (int i = 0; i < count; i++)
+        for (int i = 0; i < size; i++)
             if (array[i] < min)
                 min = array[i];
 
@@ -118,7 +116,8 @@ public class Array {
     // print whole array
     // time complexity: O(n)
     public void print() {
-        System.out.println(Arrays.toString(array));
+        for (int i = 0; i < size; i++)
+            System.out.println(array[i]);
     }
 
     // resize array to twice size
@@ -135,12 +134,12 @@ public class Array {
     // check whether array is empty
     // time complexity: O(1)
     private boolean isEmpty() {
-        return count == 0;
+        return size == 0;
     }
 
     // check whether array is full
     // time complexity: O(1)
     private boolean isFull() {
-        return count == array.length;
+        return size == array.length;
     }
 }
